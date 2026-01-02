@@ -75,7 +75,6 @@ http://localhost:5000
 
 ## 📌 Eslatma
 
-* Backend va frontend alohida portlarda ishlaydi
 * CORS sozlamalari yoqilgan
 * TinyDB ma'lumotlarni lokal JSON faylda saqlaydi
 
