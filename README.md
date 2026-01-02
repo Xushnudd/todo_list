@@ -1,30 +1,32 @@
 # 📝 Vazifalar Ro'yxati (Fullstack Todo App)
 
-Ushbu loyiha zamonaviy va tezkor **REST API** asosida ishlaydigan vazifalar menejeri bo'lib, backend va frontend qismlari to'liq integratsiya qilingan. 
+Ushbu loyiha zamonaviy va tezkor **REST API** asosida ishlaydigan vazifalar menejeri bo'lib, **backend** va **frontend** qismlari to'liq integratsiya qilingan.
 
 ---
 
 ## 🚀 Loyiha Imkoniyatlari
 
-* ✅ **Vazifa Yaratish:** Sarlavha, batafsil matn va muddatni kiritish.
-* 📜 **Real-vaqtda Yangilanish:** Ma'lumot qo'shilganda yoki o'chirilganda sahifa yangilanmasdan (AJAX) o'zgaradi.
-* 🗑️ **Vazifani O'chirish:** Har bir vazifa uchun maxsus o'chirish tugmasi.
-* 🎨 **Zamonaviy Dizayn:** Tailwind CSS-ning murakkab selektorlari yordamida yaratilgan "Dark Mode" interfeysi.
-* ⚡ **CORS Qo'llab-quvvatlash:** Frontend va Backend o'rtasidagi xavfsiz aloqa.
+* ✅ **Vazifa Yaratish:** Sarlavha, batafsil matn va muddatni kiritish
+* 📜 **Real-vaqtda Yangilanish:** Ma'lumot qo'shilganda yoki o'chirilganda sahifa yangilanmasdan (AJAX) o'zgaradi
+* 🗑️ **Vazifani O'chirish:** Har bir vazifa uchun alohida o'chirish tugmasi
+* 🎨 **Zamonaviy Dizayn:** Tailwind CSS yordamida yaratilgan *Dark Mode* interfeys
+* ⚡ **CORS Qo'llab-quvvatlash:** Frontend va Backend o'rtasida xavfsiz aloqa
 
 ---
 
 ## 🛠️ Texnologiyalar Steki
 
-### **Backend (Python)**
-* **Flask:** Web-server va API endpointlarni boshqarish uchun.
-* **TinyDB:** Ma'lumotlarni JSON formatida saqlash uchun yengil ma'lumotlar bazasi.
-* **Flask-CORS:** Turli portlardan keladigan so'rovlarga ruxsat berish uchun.
+### 🔧 Backend (Python)
 
-### **Frontend (JavaScript/HTML)**
-* **JavaScript (ES6+):** Asinxron `fetch` so'rovlari va DOM bilan ishlash.
-* **Tailwind CSS:** JIT (Just-In-Time) engine va maxsus klasslar yordamida dizayn.
-* **Vite:** Loyihani tezkor yig'ish va ishlab chiqish muhiti.
+* **Flask** — REST API va server logikasini boshqarish
+* **TinyDB** — JSON asosidagi yengil ma'lumotlar bazasi
+* **Flask-CORS** — Turli portlardan keladigan so'rovlarga ruxsat berish
+
+### 🎨 Frontend (JavaScript / HTML)
+
+* **JavaScript (ES6+)** — `fetch` orqali asinxron so'rovlar va DOM bilan ishlash
+* **Tailwind CSS** — Zamonaviy va moslashuvchan dizayn (JIT engine)
+* **Vite** — Tezkor frontend build va development muhiti
 
 ---
 
@@ -33,4 +35,52 @@ Ushbu loyiha zamonaviy va tezkor **REST API** asosida ishlaydigan vazifalar mene
 ```text
 ├── app.py              # Flask server (Backend)
 ├── index.html          # Asosiy UI sahifasi
+├── requirements.txt    # Python kutubxonalari
 └── README.md           # Loyiha hujjatlari
+```
+
+---
+
+## ⚙️ O'rnatish va Ishga Tushirish
+
+### 🐧 Linux / 🍎 macOS
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python app.py
+```
+
+---
+
+### 🪟 Windows
+
+```bat
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+```
+
+---
+
+## 🔗 API Manzili (Backend)
+
+```text
+http://localhost:5000
+```
+
+---
+
+## 📌 Eslatma
+
+* Backend va frontend alohida portlarda ishlaydi
+* CORS sozlamalari yoqilgan
+* TinyDB ma'lumotlarni lokal JSON faylda saqlaydi
+
+---
+
+## 👨‍💻 Muallif
+
+Ushbu loyiha o'quv va amaliy maqsadlarda ishlab chiqilgan.
