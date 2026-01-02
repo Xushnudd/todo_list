@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 from tinydb import TinyDB, Query
 
 app = Flask(__name__)
+CORS(app)
 
 db = TinyDB("db.json")
 user = Query()
