@@ -32,9 +32,5 @@ Ushbu loyiha zamonaviy va tezkor **REST API** asosida ishlaydigan vazifalar mene
 
 ```text
 ├── app.py              # Flask server (Backend)
-├── db.json             # TinyDB bazasi (JSON formatda)
 ├── index.html          # Asosiy UI sahifasi
-├── src/
-│   └── main.js         # JavaScript mantiqi va API aloqasi
-├── style.css           # Tailwind CSS stillari
 └── README.md           # Loyiha hujjatlari
