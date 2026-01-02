@@ -3,9 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo Api json</title>
+    <title>Todo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <h1>Quyidagicha ulanishingiz mumkin!</h1>
+    <div class="w-full h-screen flex justify-center items-center">
+        <div class="w-150 bg-gray-600 text-white rounded-2xl p-10">
+            <h1 class="text-4xl text-center p-5">Vazifalar Ro'yxati</h1>
+            <form action="http://127.0.0.1:5000/create" method="POST" class="flex flex-col [&>input]:w-full [&>input]:h-15 [&>input]:border [&>input]:border-blue-950 [&>input]:rounded-md [&>input]:bg-gray-900">
+                <label for="title">Sarlavha</label>
+                <input type="text" name="title" id="title">
+                <label for="text">Matn</label>
+                <input type="text" name="text" id="text">
+                <label for="date">Vaqt</label>
+                <input type="date" name="date" id="date">
+                <div>
+                    <button type="reset" class="w-50 p-5 m-5 bg-gray-900 rounded-4xl active:bg-gray-500">Tozalash</button>
+                    <button type="submit" class="w-50 p-5 m-5 bg-gray-900 rounded-4xl active:bg-gray-500">Qo'shish</button>
+                </div>
+            </form>
+            <div class="border-t border-gray-500 w-full p-1
+                [&>div]:w-full [&>div]:flex [&>div]:justify-between [&>div]:items-center [&>div]:px-2 [&>div]:border [&>div]:border-gray-300 [&>div]:rounded-2xl [&>div]:m-2
+
+                [&>div>div]:flex [&>div>div]:flex-col
+                [&>div>div>span]:text-xl [&>div>div>p]:text-xs
+                
+                [&>div>button]:bg-red-600 [&>div>button:active]:bg-red-300 [&>div>button]:rounded-xl [&>div>button]:p-0.5"
+                
+                id="posts">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const myForm = document.querySelector('form');
+        const postsContainer = document.getElementById('posts');
+
+        // 1. Ma'lumotlarni ekranga chiqarish funksiyasi
+        const renderPosts = (data) => {
+            postsContainer.innerHTML = ''; // Eski postlarni tozalash
+            
+            data.forEach(item => {
+                // Yangi div yaratamiz
+                const postDiv = document.createElement('div');
+                
+                // Postning ichki qismi (HTML kodingizdagi strukturaga mos)
+                postDiv.innerHTML = `
+                    <div>
+                        <span>${item.title}</span>
+                        <p>${item.text}</p>
+                        <small style="font-size: 10px; color: #ccc;">${item.date}</small>
+                    </div>
+                    <button type="button" data-title="${item.title}">O'chirish</button>
+                `;
+
+                // O'chirish tugmasiga hodisa qo'shish
+                const deleteBtn = postDiv.querySelector('button');
+                deleteBtn.addEventListener('click', () => deletePost(item.title));
+
+                postsContainer.appendChild(postDiv);
+            });
+        }
+
+        // 2. Barcha postlarni olish (Read)
+        const fetchPosts = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/read');
+                const data = await response.json();
+                renderPosts(data);
+            } catch (err) {
+                console.error("Ma'lumot olishda xato:", err);
+            }
+        }
+
+        // 3. Post qo'shish (Create)
+        myForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(myForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    const updatedData = await response.json();
+                    renderPosts(updatedData);
+                    myForm.reset(); // Formani tozalash
+                }
+            } catch (err) {
+                console.error("Yuborishda xato:", err);
+            }
+        });
+
+        // 4. Postni o'chirish (Delete)
+        const deletePost = async (title) => {
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/delete?title=${encodeURIComponent(title)}`);
+                if (response.ok) {
+                    const updatedData = await response.json();
+                    renderPosts(updatedData);
+                }
+            } catch (err) {
+                console.error("O'chirishda xato:", err);
+            }
+        }
+
+        // Sahifa yuklanganda ma'lumotlarni chiqarish
+        fetchPosts();
+    </script>
 </body>
 </html>
